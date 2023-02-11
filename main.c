@@ -29,6 +29,8 @@ int main(int argc, char* argv[]){
 
 	(void)argc;
 	
+	setup_config();
+
 	while(1){
 		if(getcwd(cwd, 255) == NULL){
 			perror("shell: can not get current workdir");
@@ -36,13 +38,14 @@ int main(int argc, char* argv[]){
 		printf("(%s%s%s%s@%s%s%s%s)-[%s%s%s] %s$%s ",green,user,end,yellow,end,cyan,prompt,end,blue,cwd,end,yellow,end);
 		nchars_read = getline(&lineptr, &n, stdin);
 		
-		if(strncmp(lineptr, "exit", 4) == 0){
-			printf("exit\n");
-			return (1);
-		}
-
 		if(nchars_read == 1 && strcmp(lineptr, "\n") == 0) {
 			continue;			
+		}
+		
+		if(strncmp(lineptr, "exit", 4) == 0){
+			update_history(lineptr);
+			printf("exit\n");
+			return (1);
 		}
 
 		if(nchars_read == -1){
@@ -50,6 +53,8 @@ int main(int argc, char* argv[]){
 			return (-1);
 		}
 		
+		update_history(lineptr);
+
 		lineptr_copy = malloc(sizeof(char) * nchars_read);
 		if(lineptr_copy == NULL){
 			perror("shell: memory allocation error");

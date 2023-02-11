@@ -1,12 +1,8 @@
 #include "main.h"
 
-typedef struct aliases {
-	char *alias_name;
-	char *cmd_name;
-} alias;
+static int count = 2;
 
-//ALIAS
-alias shell_aliases[] = {
+alias shell_aliases[20] = {
 	{"l", "ls --color=auto -l"},
 	{"ll", "ls -l -h"},
 	{NULL, NULL},
@@ -53,4 +49,23 @@ bool isAlias(char *CMD){
 		c++;
 	}
 	return false;
+}
+
+void add_alias(char **argv){
+	char *alias_cmd = strtok(argv[1],"=");
+	char *actual_cmd = strtok(NULL,"\"");
+	
+	shell_aliases[count].alias_name = alias_cmd;
+	shell_aliases[count].cmd_name = actual_cmd;
+	count++;
+	shell_aliases[count].alias_name = NULL;
+	shell_aliases[count].cmd_name = NULL;
+}
+
+void print_alias(){
+	int c = 0;
+	while(shell_aliases[c].alias_name != NULL){
+		printf("alias %s='%s'\n",shell_aliases[c].alias_name,shell_aliases[c].cmd_name);
+		c++;
+	}
 }

@@ -17,13 +17,14 @@ void execmd(char **argv){
 		actual_command = get_location(command);
 		
 		if(actual_command == NULL){
-		 printf("shell: %s: command not found\n",argv[0]);
+			printf("shell: %s: command not found\n",argv[0]);
+			return;
 		}
 		
 		pid_t pid = fork();
 		if(pid == 0){
 			if(execve(actual_command, argv, NULL) == -1){
-				perror(printf("shell: %s: command execution error",argv[0]));
+				perror("shell: command execution error");
 			};
 			exit(0);
 		}
