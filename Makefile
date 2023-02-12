@@ -1,6 +1,7 @@
 build:	
 	mkdir -p bin
 	gcc -Wall -Werror -Wextra -pedantic -std=gnu89 src/*.c -o bin/shell -w 
+
 run:
 	gcc -Wall -Wextra -Werror -pedantic src/main.c -o shell -w 
 

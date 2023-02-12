@@ -45,6 +45,7 @@ bool isAlias(char *CMD){
 			/*for(i=0;args[i] != NULL;i++){
 				printf("%s\n",args[i]);
 			}*/
+			
 			free(cmd);
 			free(cmd_copy);
 			

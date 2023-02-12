@@ -63,7 +63,6 @@ int main(int argc, char* argv[]){
         		return (-1);
 		}
 		strcpy(lineptr_copy, lineptr);
-
 		token = strtok(lineptr, delim);
 		while(token != NULL){
 			num_tokens++;
@@ -81,6 +80,8 @@ int main(int argc, char* argv[]){
 		}
 		argv[i] = NULL;
 
+		free(lineptr_copy);
+		
 		/*for(i=0;argv[i] != NULL;i++){
 			printf("%s\n",argv[i]);
 		}*/
@@ -88,10 +89,8 @@ int main(int argc, char* argv[]){
 		execmd(argv);
 
 		free(argv);
-		/*printf("%s\n",lineptr);*/	
 	}
 
-	free(lineptr_copy);
 	free(lineptr);
 	return (0);
 }

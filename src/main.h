@@ -15,6 +15,9 @@ typedef struct aliases {
 	char *cmd_name;
 } alias;
 
+static int d = 1;
+static int f = 1;
+
 void execmd(char **argv);
 char *get_location(char *command);
 

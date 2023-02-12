@@ -4,7 +4,7 @@ void execmd(char **argv){
 	char *command = NULL;
 	char *actual_command = NULL;
 
-	if(argv){
+	if(argv[0] != NULL){
 
 		command = argv[0];
 		if(isBuiltIn(command)){

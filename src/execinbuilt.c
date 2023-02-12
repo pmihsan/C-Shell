@@ -19,34 +19,35 @@ void execbuiltin(char **argv){
 }
 
 void exec_cd(char **argv){
-	char cwd[256];
-	if(getcwd(cwd, 255) == NULL){
+	char cwd[61];
+	if(getcwd(cwd, 60) == NULL){
         	perror("shell: can not get current workdir");
+		return;
         }	
 	
-	if(argv[1] != 0 && argv[2] != 0){
+	else if(argv[1] != 0 && argv[2] != 0){
 		perror("shell: cd: too many arguments");
 	}
-
-	if(argv[1] == 0 || strcmp(argv[1], "~") == 0){
-		if(chdir(getenv("HOME")) != 0){
+	
+	else if((argv[1] == NULL) || (strcmp(argv[1], "~") == 0)){
+		char homedir[25];
+		sprintf(homedir, "/home/%s", getenv("USER"));
+		printf("%s\n",homedir);
+		if(chdir(homedir) != 0){
 			perror("shell: cd: HOME directory not set");
 		}
-		else{
-			setenv("OLDPWD",cwd,1);
-		}	
 	}
-	else if(strcmp(argv[1], "-") == 0){
+	
+	else if(argv[1] != 0 && strcmp(argv[1], "-") == 0){
 		if(chdir(getenv("OLDPWD")) != 0){
 			perror("shell: cd: OLDPWD not set");
 		}	
-		else{
-			setenv("OLDPWD",cwd,1);
-		}	
 	}
+	
 	else if(chdir(argv[1]) != 0){
 		perror("shell: cd: No such file or directory");
-	}	
+	}
+	setenv("OLDPWD",cwd,1);
 }
 
 void exec_help(){
