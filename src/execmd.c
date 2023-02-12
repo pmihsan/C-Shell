@@ -15,8 +15,7 @@ void execmd(char **argv){
 			return;
 		}
 		actual_command = get_location(command);
-		
-		if(actual_command == NULL){
+		if(strlen(actual_command) == 0){
 			printf("shell: %s: command not found\n",argv[0]);
 			return;
 		}

@@ -26,7 +26,7 @@ int get_len(char *s){
 
 void setup_config(){
 	DIR* dir = opendir(dirname);
-	if(dir == NULL && mkdir(dirname,0755) != 0){
+	if((dir == NULL) && mkdir(dirname,0755) != 0){
 		perror("shell: config: file not stored");
 	}		
 }

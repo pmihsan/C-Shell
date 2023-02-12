@@ -2,22 +2,24 @@
 
 int main(int argc, char* argv[]){
 
+	/*
 	char *black = "\033[0;30m";
 	char *red = "\033[0;31m";
+	char *purple = "\033[0;35m";
+	char *white = "\033[0;367m";
+	*/
 	char *green = "\033[0;32m";
 	char *yellow = "\033[0;33m";
 	char *blue = "\033[0;34m";
-	char *purple = "\033[0;35m";
 	char *cyan = "\033[0;36m";
-	char *white = "\033[0;367m";
 	char *end = "\033[0m";
 
 	char *user = getenv("USER");
 	char *prompt = "shell";
-	char cwd[256];
-	cwd[255] = '\0';
-	char *lineptr = NULL;
+	char cwd[101];
+	cwd[100] = '\0';
 
+	char *lineptr = NULL;
 	char *lineptr_copy = NULL;
 	const char *delim = " \n";
 

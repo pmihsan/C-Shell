@@ -2,7 +2,7 @@
 
 static int count = 2;
 
-alias shell_aliases[20] = {
+alias shell_aliases[6] = {
 	{"l", "ls --color=auto -l"},
 	{"ll", "ls -l -h"},
 	{NULL, NULL},
@@ -16,10 +16,13 @@ bool isAlias(char *CMD){
 			int len = strlen(shell_aliases[c].cmd_name);
 			char *cmd = malloc(sizeof(char) * len);
 			strcpy(cmd, shell_aliases[c].cmd_name);	
-			
+			char *cmd_copy = strdup(cmd);			
+
+			/*
 			char *cmd_copy = malloc(sizeof(char) * len);
 			strcpy(cmd_copy, shell_aliases[c].cmd_name);		
-			
+			*/
+		
 			char *token = strtok(cmd, " ");
 			int num_tokens = 0;
 			while(token != NULL){
@@ -42,8 +45,11 @@ bool isAlias(char *CMD){
 			/*for(i=0;args[i] != NULL;i++){
 				printf("%s\n",args[i]);
 			}*/
-
+			free(cmd);
+			free(cmd_copy);
+			
 			exec_alias(args);	
+			free(args);
 			return true;
 		}
 		c++;

@@ -1,12 +1,16 @@
 #include "main.h"
 
 char *get_location(char *command){
+	
+	struct stat buffer;
+	if(stat(command, &buffer) == 0){
+		return (command);
+	}
+	
 	char *path, *path_copy;
 	int command_length, directory_length;
 
 	char *path_token, *file_path;
-
-	struct stat buffer;
 
 	path = getenv("PATH");
 	path_copy = strdup(path);
@@ -26,16 +30,12 @@ char *get_location(char *command){
 			free(path_copy);
 			return (file_path);
 		}
-		
-		free(file_path);
-		path_token = strtok(NULL, ":");
+		else{
+			free(file_path);
+			path_token = strtok(NULL, ":");
+		}
 	}
 	
 	free(path_copy);
-	
-	if(stat(command, &buffer) == 0){
-		return (command);
-	}
-
-	return (NULL);
+	return "";
 }

@@ -19,7 +19,6 @@ void execbuiltin(char **argv){
 }
 
 void exec_cd(char **argv){
-	
 	char cwd[256];
 	if(getcwd(cwd, 255) == NULL){
         	perror("shell: can not get current workdir");
@@ -47,7 +46,7 @@ void exec_cd(char **argv){
 	}
 	else if(chdir(argv[1]) != 0){
 		perror("shell: cd: No such file or directory");
-	}
+	}	
 }
 
 void exec_help(){
