@@ -25,13 +25,17 @@ bool isBuiltIn(char *command);
 bool isAlias(char *command);
 int get_len(char *string);
 void setup_config();
+void shell_info(char **argv);
 void update_history(char *hist);
 void display_history();
 
 void create_alias(char **argv);
+void remove_alias(char **argv);
 void print_alias();
 void add_alias(char **argv);
+bool del_alias(char **argv);
 
+void execbuiltin(char **argv);
 void exec_cd(char **argv);
 void exec_help();
 void exec_clear();

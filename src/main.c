@@ -44,14 +44,18 @@ int main(int argc, char* argv[]){
 			continue;			
 		}
 		
-		if(strncmp(lineptr, "exit", 4) == 0){
+		if(strncmp(lineptr, "exit", 4) == 0 && nchars_read == 5){
 			update_history(lineptr);
 			printf("exit\n");
 			return (1);
 		}
+	
+		else if(strncmp(lineptr, "logout", 6) == 0 && nchars_read == 7){
+			return (1);
+		}
 
-		if(nchars_read == -1){
-			printf("Exiting shell...\n");
+		else if(nchars_read == -1){
+			printf("\nExiting shell...\n");
 			return (-1);
 		}
 		

@@ -1,7 +1,7 @@
 #include "main.h"
 
 bool isBuiltIn(char *cmd){
-	char builtins[][30] = {"cd", "help", "alias", "history", "clear", '\0'};
+	char builtins[][30] = {"cd", "help", "alias", "unalias", "shell", "history", "clear", '\0'};
 	int i = 0;
 	while(builtins[i] != NULL && strlen(builtins[i]) != 0 ){
 		if(strncmp(cmd, builtins[i], strlen(builtins[i])) == 0) {

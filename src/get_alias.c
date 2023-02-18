@@ -1,8 +1,9 @@
 #include "main.h"
 
+int MAX = 20;
 static int count = 2;
 
-alias shell_aliases[6] = {
+alias shell_aliases[20] = {
 	{"l", "ls --color=auto -l"},
 	{"ll", "ls -l -h"},
 	{NULL, NULL},
@@ -11,7 +12,11 @@ alias shell_aliases[6] = {
 bool isAlias(char *CMD){
 	int c = 0, i;
 	char **args;
-	while(shell_aliases[c].alias_name != NULL){
+	while(c < MAX){
+		if(shell_aliases[c].alias_name == NULL){
+			c++;
+			continue;
+		}
 		if(strcmp(CMD, shell_aliases[c].alias_name) == 0){
 			int len = strlen(shell_aliases[c].cmd_name);
 			char *cmd = malloc(sizeof(char) * len);
@@ -69,9 +74,30 @@ void add_alias(char **argv){
 	shell_aliases[count].cmd_name = NULL;
 }
 
+bool del_alias(char **argv){
+	int c = 0;
+	while(c < MAX){
+		if(shell_aliases[c].alias_name == NULL){
+			c++;
+			continue;
+		}
+		if(strcmp(argv[1], shell_aliases[c].alias_name) == 0){
+			shell_aliases[c].alias_name = NULL;
+			shell_aliases[c].cmd_name = NULL;
+			return true;
+		}
+		c++;
+	}
+	return false;
+}
+
 void print_alias(){
 	int c = 0;
-	while(shell_aliases[c].alias_name != NULL){
+	while(c < MAX){
+		if(shell_aliases[c].alias_name == NULL){
+			c++;
+			continue;
+		}
 		printf("alias %s='%s'\n",shell_aliases[c].alias_name,shell_aliases[c].cmd_name);
 		c++;
 	}
