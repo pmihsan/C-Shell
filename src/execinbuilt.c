@@ -7,6 +7,9 @@ void execbuiltin(char **argv){
 	else if(strncmp(argv[0], "help", 4) == 0 && strlen(argv[0]) == 4){
 		exec_help();
 	}	
+	else if(strncmp(argv[0], "exit", 4) == 0 && strlen(argv[0]) == 4){
+		exec_exit();
+	}	
 	else if(strncmp(argv[0], "clear", 5) == 0 && strlen(argv[0]) == 5){
 		exec_clear();
 	}	
@@ -57,6 +60,11 @@ void exec_cd(char **argv){
 		perror("shell: cd: No such file or directory");
 	}
 	setenv("OLDPWD",cwd,1);
+}
+
+void exec_exit(){
+	printf("exit\n");
+	exit(0);
 }
 
 void exec_help(){

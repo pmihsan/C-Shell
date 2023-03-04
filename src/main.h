@@ -38,6 +38,7 @@ bool del_alias(char **argv);
 void execbuiltin(char **argv);
 void exec_cd(char **argv);
 void exec_help();
+void exec_exit();
 void exec_clear();
 void exec_alias(char **argv);
 void exec_history(char **argv);
