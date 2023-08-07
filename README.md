@@ -4,15 +4,15 @@ Custom shell similar to bash implemented with the help of system calls in linux 
 ### Commands (inbuilt)
 | Commands | Uses                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| cd       | Used to change to the specified directory. |
+| cd       | Used to change directory. |
 | alias    | Used to create a short alias for long commands and also able to view the currently set aliases. |
-| unalias  | Used to remove the alias set for a command. |
-| help     | Used to get the information about the shell and set of inbuilt commands. |
+| unalias  | Used to remove the alias for a command. |
+| help     | Used to get the information about the shell and set of inbuilt commands in it. |
 | history  | Used to view the history of commands executed. |
 | clear    | Used to clear the console. |
 | exit     | Exit out of the shell. |
 
-And all other commands other the inbuilt ones are executed using execve system call.
+And all other commands other than inbuilt ones are executed using execve system call.
 
 ### Compilation
 Change directiory into src folder
